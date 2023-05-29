@@ -6,13 +6,19 @@ on:
       user_input:
         description: 'User input'
         required: true
-      sub_workflow_data: # Add a new input to receive data from sub workflow
-        description: 'Data from Sub Workflow'
-        required: false
 
 jobs:
   call-workflow-passing-data:
     uses: ./.github/workflows/workflow_call.yml
+    id: call_workflow # Corrected identifier
     with:
       data: ${{ github.event.inputs.user_input }}
-      sub_workflow_data: ${{ github.event.inputs.sub_workflow_data }} # Pass the data to sub workflow
+
+  main_job:
+    needs: call-workflow-passing-data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retrieve sub workflow data
+        run: |
+          sub_workflow_data="${{ fromJson(needs.call_workflow.outputs.workflow_data) }}" # Corrected identifier
+          echo "Sub Workflow Data: $sub_workflow_data"

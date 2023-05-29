@@ -6,9 +6,6 @@ on:
       data:
         required: true
         type: string
-      sub_workflow_data: # Pass the data back to the workflow dispatch
-        required: false
-        type: string
 
 jobs:
   sub_job:
@@ -17,4 +14,4 @@ jobs:
       - name: ip_addr
         run: |
           echo "Processing data: ${{ inputs.data }}"
-          echo "::set-output name=sub_workflow_data::${{ inputs.data }}" # Pass the data back to the workflow dispatch
+          echo "::set-output name=sub_workflow_data::${{ inputs.data }}"
