@@ -11,9 +11,6 @@ jobs:
   workflow_dispatch_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
       - name: Dispatch Workflow Call
         uses: ./.github/workflows/workflow_call.yml
         with:
