@@ -1,15 +1,12 @@
-name: another-workflow
+name: Workflow Call Example
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  another-job:
+  workflow_call_job:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Print Input Data
+      - name: Display Input
         run: |
-          echo "Input data: ${{ inputs.input_data }}"
+          echo "Input from Workflow Dispatch: ${{ github.event.client_payload.my_input }}"
