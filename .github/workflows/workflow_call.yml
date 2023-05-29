@@ -1,7 +1,7 @@
 name: Workflow Call Example
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   workflow_call_job:
