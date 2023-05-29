@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Dispatch Workflow Call
-        uses: ./.github/workflows/workflow_call.yml
-        with:
-          my_input: ${{ github.event.inputs.my_input }}
+        run: |
+          echo "Dispatching Workflow Call"
+          echo "Input: ${{ github.event.inputs.my_input }}"
+          echo "::set-output name=my_input::${{ github.event.inputs.my_input }}"

@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: Display Input
         run: |
-          echo "Input from Workflow Dispatch: ${{ github.event.client_payload.my_input }}"
+          echo "Input from Workflow Dispatch: ${{ needs.workflow_dispatch.outputs.my_input }}"
