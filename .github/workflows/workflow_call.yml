@@ -5,13 +5,16 @@ on:
     inputs:
       data:
         required: true
-        type : string
+        type: string
+      sub_workflow_data: # Pass the data back to the workflow dispatch
+        required: false
+        type: string
 
 jobs:
   sub_job:
     runs-on: ubuntu-latest
-
     steps:
-     - name: ip_addr
-       run: |
-         echo "Processing data: ${{ inputs.data }}"
+      - name: ip_addr
+        run: |
+          echo "Processing data: ${{ inputs.data }}"
+          echo "::set-output name=sub_workflow_data::${{ inputs.data }}" # Pass the data back to the workflow dispatch
