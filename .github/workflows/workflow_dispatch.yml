@@ -21,6 +21,6 @@ jobs:
           echo "::set-output name=data::${{ github.event.inputs.data }}"
           
       - name: Call Another Workflow
-        uses: ./another-workflow.yml
+        uses: ./workflow_call.yml
         with:
           input_data: ${{ steps.get-data.outputs.data }}
