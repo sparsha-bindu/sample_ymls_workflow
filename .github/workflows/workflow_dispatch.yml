@@ -1,16 +1,14 @@
-name: Workflow Dispatch Example
+name: Main Workflow
 
 on:
   workflow_dispatch:
     inputs:
-      my_input:
-        description: 'Input for Workflow Call'
+      user_input:
+        description: 'User input'
         required: true
 
 jobs:
-  workflow_dispatch_job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set Input as Environment Variable
-        run: |
-          echo "INPUT_MY_INPUT=${{ github.event.inputs.my_input }}" 
+  call-workflow-passing-data:
+    uses: ./.github/workflows/sample2.yml
+    with:
+      data: ${{ github.event.inputs.user_input }}

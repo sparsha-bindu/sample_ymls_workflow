@@ -1,16 +1,17 @@
-name: Workflow Call Example
+name: Sub Workflow
 
 on:
-  workflow_run:
-    workflows:
-      - "Workflow Dispatch Example"
-    types:
-      - completed
+  workflow_call:
+    inputs:
+      data:
+        required: true
+        type : string
 
 jobs:
-  workflow_call_job:
+  sub_job:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Read Input from Environment File
-        run: |
-          echo "Input from Workflow Dispatch: $INPUT_MY_INPUT"
+     - name: ip_addr
+       run: |
+         echo "Processing data: ${{ inputs.data }}"
