@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       data:
-        description: "Please enter the ip_address"
+        description: "Please enter the data"
         type: string
 
 jobs:
@@ -14,8 +14,3 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Load creds
-        run: |
-          echo '${{ secrets.SSH_OPENSSL_PRIV }}' > rooto.pem
-          chmod 400 rooto.pem
