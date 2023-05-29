@@ -11,8 +11,11 @@ jobs:
   workflow_dispatch_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Dispatch Workflow Call
-        id: workflow_call
-        uses: ./.github/workflows/workflow_call.yml
+      - name: Set Input as Environment Variable
+        run: |
+          echo "INPUT_MY_INPUT=${{ github.event.inputs.my_input }}" >> $GITHUB_ENV
+      - name: Upload Environment File
+        uses: actions/upload-artifact@v2
         with:
-          my_input: ${{ github.event.inputs.my_input }}
+          name: environment
+          path: $GITHUB_ENV
