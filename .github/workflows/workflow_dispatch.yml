@@ -9,6 +9,6 @@ on:
 
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/workflows/sample2.yml
+    uses: ./.github/workflows/workflow_call.yml
     with:
       data: ${{ github.event.inputs.user_input }}
