@@ -2,6 +2,10 @@ name: Workflow Call Example
 
 on:
   workflow_dispatch:
+    inputs:
+      my_input:
+        description: 'Input from Workflow Dispatch'
+        required: true
 
 jobs:
   workflow_call_job:
