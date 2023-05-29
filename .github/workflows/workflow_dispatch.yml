@@ -9,10 +9,4 @@ on:
 
 jobs:
   workflow_dispatch_job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dispatch Workflow Call
-        run: |
-          echo "Dispatching Workflow Call"
-          echo "Input: ${{ github.event.inputs.my_input }}"
-          echo "::set-output name=my_input::${{ github.event.inputs.my_input }}"
+      uses: ./.github/workflows/workflow_call.yml
