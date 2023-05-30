@@ -1,24 +1,14 @@
-name: Main Workflow
+name: Call a reusable workflow and use its outputs
 
 on:
   workflow_dispatch:
-    inputs:
-      user_input:
-        description: 'User input'
-        required: true
 
 jobs:
-  call-workflow-passing-data:
-    uses: ./.github/workflows/workflow_call.yml
-    id: call_workflow # Corrected identifier
-    with:
-      data: ${{ github.event.inputs.user_input }}
+  job1:
+    uses: ./.github/workflows/workflow_call.yml@v1
 
-  main_job:
-    needs: call-workflow-passing-data
+  job2:
     runs-on: ubuntu-latest
+    needs: job1
     steps:
-      - name: Retrieve sub workflow data
-        run: |
-          sub_workflow_data="${{ fromJson(needs.call_workflow.outputs.workflow_data) }}" # Corrected identifier
-          echo "Sub Workflow Data: $sub_workflow_data"
+      - run: echo ${{ needs.job1.outputs.firstword }} ${{ needs.job1.outputs.secondword }}

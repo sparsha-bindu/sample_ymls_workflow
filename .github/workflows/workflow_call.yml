@@ -1,17 +1,25 @@
-name: Sub Workflow
+name: Reusable workflow
 
 on:
   workflow_call:
-    inputs:
-      data:
-        required: true
-        type: string
+    outputs:
+      firstword:
+        description: "The first output string"
+        value: ${{ jobs.example_job.outputs.output1 }}
+      secondword:
+        description: "The second output string"
+        value: ${{ jobs.example_job.outputs.output2 }}
 
 jobs:
-  sub_job:
+  example_job:
+    name: Generate output
     runs-on: ubuntu-latest
+    # Map the job outputs to step outputs
+    outputs:
+      output1: ${{ steps.step1.outputs.firstword }}
+      output2: ${{ steps.step2.outputs.secondword }}
     steps:
-      - name: ip_addr
-        run: |
-          echo "Processing data: ${{ inputs.data }}"
-          echo "::set-output name=sub_workflow_data::${{ inputs.data }}"
+      - id: step1
+        run: echo "firstword=hello" >> $GITHUB_OUTPUT
+      - id: step2
+        run: echo "secondword=world" >> $GITHUB_OUTPUT
