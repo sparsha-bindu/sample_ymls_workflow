@@ -1,0 +1,24 @@
+name: another Reusable workflow
+
+on:
+  workflow_call:
+    outputs:
+      thirdword:
+        description: "The third output string"
+        value: ${{ jobs.example_job.outputs.output3 }}
+      forthword:
+        description: "The forth output string"
+        value: ${{ jobs.example_job.outputs.output4 }}
+
+jobs:
+  example_job:
+    name: Generate output
+    runs-on: ubuntu-latest
+    outputs:
+      output3: ${{ steps.step1.outputs.thirdword }}
+      output4: ${{ steps.step2.outputs.forthword }}
+    steps:
+      - id: step3
+        run: echo "thirdword=this" >> $GITHUB_OUTPUT
+      - id: step4
+        run: echo "forthword=is bottle" >> $GITHUB_OUTPUT
