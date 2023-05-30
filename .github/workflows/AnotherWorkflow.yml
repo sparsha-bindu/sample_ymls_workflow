@@ -1,0 +1,18 @@
+name: AnotherWorkflow
+
+on:
+  workflow_run:
+    workflows:
+      - DispatchWorkflow
+
+jobs:
+  process_data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Process data
+        run: |
+          # Add your data processing steps here
+          # You can access the input data using ${{ github.event.workflow_run.inputs.data }}
+
+    outputs:
+      processedData: ${{ steps.process_data.outputs.processedData }}

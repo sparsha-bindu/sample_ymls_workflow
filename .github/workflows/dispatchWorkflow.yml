@@ -1,0 +1,21 @@
+name: DispatchWorkflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      data:
+        description: 'Data to be passed to AnotherWorkflow'
+        required: true
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger AnotherWorkflow
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          workflow: AnotherWorkflow.yml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          inputs: |
+            data: ${{ github.event.inputs.data }}
