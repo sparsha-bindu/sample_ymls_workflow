@@ -15,8 +15,8 @@ jobs:
     name: Generate output
     runs-on: ubuntu-latest
     outputs:
-      output3: ${{ steps.step1.outputs.thirdword }}
-      output4: ${{ steps.step2.outputs.forthword }}
+      output3: ${{ steps.step3.outputs.thirdword }}
+      output4: ${{ steps.step4.outputs.forthword }}
     steps:
       - id: step3
         run: echo "thirdword=this" >> $GITHUB_OUTPUT
