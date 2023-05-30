@@ -12,4 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: use the ip
-        run: echo "${{ input.ip_address }}"
+        run: echo "${{ inputs.ip_address }}"
