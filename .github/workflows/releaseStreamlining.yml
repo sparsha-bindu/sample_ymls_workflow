@@ -1,15 +1,17 @@
-name: Call a reusable workflow and use its outputs
+name: Trial to create VM and run sanity
 
 on:
   workflow_dispatch:
   
 
 jobs:
-  job1:
-    uses: ./.github/workflows/workflow_call.yml
+  createvm:
+    uses: ./.github/workflows/create_vm.yml
 
-  job2:
-    uses: ./.github/workflows/workflow_call2.yml
+  # job2 must run with IP address from inside job1
+  sanity:
+    needs: createvm
+    uses: ./.github/workflows/sanity.yml
 
   job3:
     runs-on: ubuntu-latest

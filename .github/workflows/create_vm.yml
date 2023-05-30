@@ -1,0 +1,16 @@
+name: Reusable workflow
+
+on:
+  workflow_call:
+    outputs:
+      ip_address:
+        description: "The ip_address is string"
+        value: ${{ jobs.example_job.outputs.ip_address }}
+
+jobs:
+  example_job:
+    name: Generate IP
+    runs-on: ubuntu-latest
+    steps:
+      - id: step1
+        run: echo "ip_address=hello" >> $GITHUB_OUTPUT
