@@ -2,13 +2,14 @@ name: sanity
 
 on:
   workflow_call:
+    inputs:
+      ip_address:
+        type: string
 
 jobs:
   example_job:
     name: Generate output
     runs-on: ubuntu-latest
     steps:
-      - id: step2
-        run: echo "thirdword=this" >> $GITHUB_OUTPUT
-      - id: step3
-        run: echo "forthword=is bottle" >> $GITHUB_OUTPUT
+      - name: use the ip
+        run: echo "${{ input.ip_address }}"

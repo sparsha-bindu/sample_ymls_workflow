@@ -12,3 +12,5 @@ jobs:
   sanity:
     needs: createvm
     uses: ./.github/workflows/sanity.yml
+    with:
+      ip_address: "dummy"
