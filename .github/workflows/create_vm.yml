@@ -15,4 +15,4 @@ jobs:
       ip_address: ${{ steps.step1.outputs.ip_address}}
     steps:
       - id: step1
-        run: echo "ip_address=214.322.12.32" 
+        run: echo "ip_address=214.322.12.32" >> $GITHUB_OUTPUT
