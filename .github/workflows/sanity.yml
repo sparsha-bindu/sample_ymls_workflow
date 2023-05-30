@@ -1,4 +1,4 @@
-name: another Reusable workflow
+name: sanity 
 
 on:
   workflow_call:

@@ -1,4 +1,4 @@
-name: Reusable workflow
+name: Creating vm 
 
 on:
   workflow_call:
