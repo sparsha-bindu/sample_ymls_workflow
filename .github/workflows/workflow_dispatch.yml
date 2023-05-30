@@ -20,4 +20,4 @@ jobs:
     runs-on: ubuntu-latest
     needs: job1
     steps:
-      - run: echo ${{ needs.job1.outputs.thirdword}} ${{ needs.job1.outputs.forthword }}
+      - run: echo ${{ needs.job1.outputs.firstword}} ${{ needs.job1.outputs.secondword }}

@@ -15,10 +15,10 @@ jobs:
     name: Generate output
     runs-on: ubuntu-latest
     outputs:
-      output3: ${{ steps.step3.outputs.thirdword }}
-      output4: ${{ steps.step4.outputs.forthword }}
+      output3: ${{ steps.step3.outputs.firstword }}
+      output4: ${{ steps.step4.outputs.secondword }}
     steps:
       - id: step3
-        run: echo "thirdword=this" >> $GITHUB_OUTPUT
+        run: echo "firstword=this" >> $GITHUB_OUTPUT
       - id: step4
-        run: echo "forthword=is bottle" >> $GITHUB_OUTPUT
+        run: echo "secondword=is bottle" >> $GITHUB_OUTPUT
