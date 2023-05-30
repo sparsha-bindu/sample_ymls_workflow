@@ -5,6 +5,7 @@ on:
     inputs:
       ip_address:
         type: string
+        required: true
 
 jobs:
   example_job:

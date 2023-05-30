@@ -13,4 +13,4 @@ jobs:
     needs: createvm
     uses: ./.github/workflows/sanity.yml
     with:
-      ip_address: "dummy"
+      ip_address: ${{ needs.createvm.outputs.ip_address }}
