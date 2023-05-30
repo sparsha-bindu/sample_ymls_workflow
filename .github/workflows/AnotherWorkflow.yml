@@ -1,18 +1,17 @@
-name: AnotherWorkflow
+name: Sub Workflow
 
 on:
-  workflow_run:
-    workflows:
-      - DispatchWorkflow
+  workflow_call:
+    inputs:
+      data:
+        required: true
+        type : string
 
 jobs:
-  process_data:
+  sub_job:
     runs-on: ubuntu-latest
-    steps:
-      - name: Process data
-        run: |
-          # Add your data processing steps here
-          # You can access the input data using ${{ github.event.workflow_run.inputs.data }}
 
-    outputs:
-      processedData: ${{ steps.process_data.outputs.processedData }}
+    steps:
+     - name: ip_addr
+       run: |
+         echo "Processing data: ${{ inputs.data }}"
