@@ -1,40 +1,23 @@
+name: Call a reusable workflow and use its outputs
+
 on:
   workflow_dispatch:
 
 jobs:
   job1:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Step 1 in Job 1
-        run: echo "This is Job 1"
-        id: job1_step1
-
-    outputs:
-      firstword: ${{ steps.job1_step1.outputs.firstword }}
-      secondword: ${{ steps.job1_step1.outputs.secondword }}
+    uses: ./.github/workflows/workflow_call.yml
 
   job2:
-    runs-on: ubuntu-latest
-    needs: job1
-    steps:
-      - name: Step 1 in Job 2
-        run: echo "This is Job 2"
-        id: job2_step1
-
-    outputs:
-      thirdword: ${{ steps.job2_step1.outputs.thirdword }}
-      forthword: ${{ steps.job2_step1.outputs.forthword }}
+    uses: ./.github/workflows/workflow_call2.yml
 
   job3:
     runs-on: ubuntu-latest
     needs: job1
     steps:
-      - name: Step in Job 3
-        run: echo ${{ needs.job1.outputs.firstword }} ${{ needs.job1.outputs.secondword }}
+      - run: echo ${{ needs.job1.outputs.firstword }} ${{ needs.job1.outputs.secondword }}
 
   job4:
     runs-on: ubuntu-latest
     needs: job2
     steps:
-      - name: Step in Job 4
-        run: echo ${{ needs.job2.outputs.thirdword }} ${{ needs.job2.outputs.forthword }}
+      - run: echo ${{ needs.job2.outputs.thirdword}} ${{ needs.job2.outputs.forthword }}
