@@ -13,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: step1
-        run: echo "ip_address=hello" >> $GITHUB_OUTPUT
+        run: echo "ip_address=hello"

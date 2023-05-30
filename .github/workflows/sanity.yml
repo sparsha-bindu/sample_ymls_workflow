@@ -8,7 +8,7 @@ jobs:
     name: Generate output
     runs-on: ubuntu-latest
     steps:
-      - id: step3
+      - id: step2
         run: echo "thirdword=this" >> $GITHUB_OUTPUT
-      - id: step4
+      - id: step3
         run: echo "forthword=is bottle" >> $GITHUB_OUTPUT
